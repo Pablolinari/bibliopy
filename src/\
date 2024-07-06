@@ -23,11 +23,10 @@ def writeinsheet(dir, sheet):
     # Preparar los datos para la actualización
     values = []
     for arch, disk in zip(files[0], files[1]):
-        values.append([arch,disk])
-    print(values)
-    sheet.batch_update([{'range': f'A{start_row}','values': values,}])
-
+        values.append([arch, disk])
+        print(values)
     
     
-writeinsheet("/home/pablolinari/Escritorio/biblioprueba",sheettt.sheet1)
+writeinsheet("~/Escritorio",sheettt.sheet1)
 
+sheettt.sheet1.update('A1', [[1, 1,1,1,1,1,1,1,1], [3,5,6,7,8, 4]])
