@@ -10,24 +10,17 @@ client = gspread.authorize(creds)
 
 sheetid = "1ryDAAKKe2thiksaN_FVnVELmJ5e2NRuB9183FlRp78Q" ##desde d/ hasta / de la url de calculo 
 
-sheettt = client.open_by_key(sheetid)
+sheet = client.open_by_key(sheetid)
 
-def opensheet(sheetid):
-    return client.open_by_key(sheetid)
-
-
-def writeinsheet(dir, sheet):
+def writeinsheet(dir):
     files = get_archivos(dir)
-    numrows = len(sheet.col_values(1))
+    numrows = len(sheet.sheet1.col_values(1))
     start_row = numrows + 1
     # Preparar los datos para la actualización
     values = []
     for arch, disk in zip(files[0], files[1]):
         values.append([arch,disk])
-    print(values)
-    sheet.batch_update([{'range': f'A{start_row}','values': values,}])
-
+        
+    sheet.sheet1.batch_update([{'range': f'A{start_row}','values': values,}])
     
-    
-writeinsheet("/home/pablolinari/Escritorio/biblioprueba",sheettt.sheet1)
 
