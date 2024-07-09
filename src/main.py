@@ -5,7 +5,7 @@ from iosmanage import get_archivos
 scope=[
     "https://www.googleapis.com/auth/spreadsheets"
 ]
-creds = Credentials.from_service_account_file("credentials.json",scopes=scope)
+creds = Credentials.from_service_account_file("./credentials.json",scopes=scope)
 client = gspread.authorize(creds)
 
 sheetid = "1ryDAAKKe2thiksaN_FVnVELmJ5e2NRuB9183FlRp78Q" ##desde d/ hasta / de la url de calculo 
@@ -21,6 +21,6 @@ def writeinsheet(dir):
     for arch, disk in zip(files[0], files[1]):
         values.append([arch,disk])
         
-    sheet.sheet1.batch_update([{'range': f'A{start_row}','values': values,}])
+    sheet.sheet1.batch_update([{'range': f'A{start_row}','    values': values,}])
     
 
