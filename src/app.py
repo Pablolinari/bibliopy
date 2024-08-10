@@ -8,7 +8,7 @@ data = conn.read(worksheet='Hoja 1',ttl=5)
 st.dataframe(data)
 if st.button("refresh"):
     data = conn.read(worksheet='Hoja 1',ttl=5)
-
+#directorio donde se encuentran los discos 
 maindir="/home/pablolinari/Escritorio"
 opt =os.listdir(maindir)
 dir = st.selectbox("Direccion",opt)
@@ -18,6 +18,5 @@ if st.button("cargar peliculas"):
         writeinsheet(f'{maindir}/{dir}')
     time.sleep(2)
     data = conn.read(worksheet='Hoja 1')
-
 
 

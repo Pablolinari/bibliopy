@@ -22,5 +22,3 @@ def writeinsheet(dir):
         values.append([arch,disk])
         
     sheet.sheet1.batch_update([{'range': f'A{start_row}','    values': values,}])
-    
-
