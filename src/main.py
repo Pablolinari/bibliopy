@@ -1,7 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from iosmanage import get_archivos
-
+import pandas as pd
 scope=[
     "https://www.googleapis.com/auth/spreadsheets"
 ]
@@ -12,13 +12,27 @@ sheetid = "1ryDAAKKe2thiksaN_FVnVELmJ5e2NRuB9183FlRp78Q" ##desde d/ hasta / de l
 
 sheet = client.open_by_key(sheetid)
 
-def writeinsheet(dir):
+def writeinsheet(dir,name,data=None):
     files = get_archivos(dir)
-    numrows = len(sheet.sheet1.col_values(1))
+    numrows = len(sheet.worksheet(name).col_values(1))
+    if numrows ==0 :
+        sheet.worksheet(name).update('A1','Peliculas')
+        sheet.worksheet(name).update('B1','Disco')
+        numrows+=1
     start_row = numrows + 1
     # Preparar los datos para la actualización
     values = []
-    for arch, disk in zip(files[0], files[1]):
-        values.append([arch,disk])
+    if data is None:
+        for arch, disk,tam in zip(files[0], files[1],files[2]):
+            values.append([arch,disk,tam])
+    else:
+        values=data.values.tolist()
         
-    sheet.sheet1.batch_update([{'range': f'A{start_row}','    values': values,}])
+    sheet.worksheet(name).batch_update([{'range': f'A{start_row}','values': values,}])
+
+def selectduplicated(data):
+    df = pd.DataFrame(data)
+    dfp = df[df.columns[0]]
+    duplicados = dfp.duplicated(keep=False)
+    print (duplicados)
+    return df[duplicados]
