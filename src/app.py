@@ -27,7 +27,6 @@ if st.toggle("Intrtoducir ruta",):
     maindir=(st.text_input("Ruta del disco"))
 else:
     maindir = st.selectbox("Selecciona un disco duro", discos_duros)
-print(maindir)
 col1 ,col2 = st.columns(2)
 data1 = conn.read(worksheet='Peliculas',ttl=5)
 data2 = conn.read(worksheet='Repetidas',ttl=5)
@@ -39,17 +38,16 @@ with col2:
     st.header('Peliculas repetidas')
     st.dataframe(data2,width=1000,height=500)
 
-#dir = st.selectbox("Direccion",opt)
-#st.write("La direccion elegida es ",dir)
+
 if st.button("cargar peliculas"):
     with st.spinner("Cargando datos"):
         writeinsheet(maindir,'Peliculas')
-    time.sleep(2)
-    st.rerun()
+        writeinsheet(maindir,'Repetidas',data1)
+    time.sleep(1)
+    st.experimental_rerun()
+    
 if st.button("refresh"):
-    with st.spinner("Cargando datos"):
-        writeinsheet(maindir,'Repetidas',data2)
-    time.sleep(2)
     st.rerun()
+
 
 
