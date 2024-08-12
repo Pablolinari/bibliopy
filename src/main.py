@@ -7,6 +7,7 @@ scope=[
     "https://www.googleapis.com/auth/spreadsheets"
 ]
 creds = Credentials.from_service_account_file("./sopa.json",scopes=scope)
+creds = Credentials.from_service_account_info()
 client = gspread.authorize(creds)
 
 sheetid = "1ryDAAKKe2thiksaN_FVnVELmJ5e2NRuB9183FlRp78Q" ##desde d/ hasta / de la url de calculo 
