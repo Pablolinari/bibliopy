@@ -1,13 +1,13 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from iosmanage import get_archivos
+from src.iosmanage import get_archivos
 import pandas as pd
 
 scope=[
     "https://www.googleapis.com/auth/spreadsheets"
 ]
-creds = Credentials.from_service_account_file("./sopa.json",scopes=scope)
-creds = Credentials.from_service_account_info()
+creds = Credentials.from_service_account_file('./src/sheets-428214-21258a40e3ed.json',scopes=scope)
+
 client = gspread.authorize(creds)
 
 sheetid = "1ryDAAKKe2thiksaN_FVnVELmJ5e2NRuB9183FlRp78Q" ##desde d/ hasta / de la url de calculo 
