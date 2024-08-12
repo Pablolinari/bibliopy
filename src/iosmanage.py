@@ -10,7 +10,10 @@ def get_archivos(ruta_dir):
         aux = dir_actual.index(auxruta_dir)
         aux = dir_actual[aux:]
         for archivo in archivos :
-            tam =os.path.getsize("%s\\%s"%(dir_actual,archivo))/(1024**3)
+            tam =os.path.getsize("%s\\%s"%(dir_actual,archivo))
+            print(tam)
+            tam=tam/(1024**3)
+            print(tam)
             archivo = archivo.split('.')[0]
             values.append([archivo,aux,tam])
     return values

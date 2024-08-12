@@ -15,7 +15,7 @@ sheet = client.open_by_key(sheetid)
 
 #Escribe en la hoja sheet los archivos listados de dir que se le han pasado 
 #si data != None se escribe el df pasado
-
+   
 def writesheetdata(dir,number,data=None):
     values = get_archivos(dir)
     numrows = len(sheet.get_worksheet(number).col_values(1))
@@ -32,6 +32,7 @@ def writesheetdata(dir,number,data=None):
     sheet.get_worksheet(number).batch_update([{'range': f'A{start_row}','values': values,}])
 
 def getsheetdata(index):
+    pd.options.display.float_format = lambda x: f'{x:.2f}'.replace('.', ',')
     return pd.DataFrame(sheet.get_worksheet(index).get_all_records())
 
 def selectduplicated(data):
