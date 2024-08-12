@@ -1,8 +1,8 @@
 import streamlit as st
-from src.main import writesheetdata, getsheetdata,selectduplicated
+from main import writesheetdata, getsheetdata,selectduplicated
 import time
 from pathlib import Path
-from src.iosmanage import obtener_disco_duro
+from iosmanage import obtener_disco_duro
 import pandas as pd
 
 st.set_page_config(layout="wide",page_title='Biblioteca',page_icon=":cinema:")
