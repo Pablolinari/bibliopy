@@ -6,9 +6,8 @@ import streamlit as st
 scope=[
     "https://www.googleapis.com/auth/spreadsheets"
 ]
-skey = st.secrets["gcp_service_account"]
+skey = st.secrets.get('gcp_service_account')
 creds = Credentials.from_service_account_info(skey,scopes=scope)
-
 client = gspread.authorize(creds)
 
 sheetid = "1ryDAAKKe2thiksaN_FVnVELmJ5e2NRuB9183FlRp78Q" ##desde d/ hasta / de la url de calculo 
