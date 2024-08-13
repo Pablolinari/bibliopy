@@ -17,7 +17,7 @@ discos_duros = obtener_disco_duro()
 maindir=(st.text_input("Ruta del disco"))
 #else:
  #   maindir = st.selectbox("Selecciona un disco duro", discos_duros,index=None,placeholder='Elegir un disco')
-st.text_area(st.write(os.getcwd()))
+st.text_area(os.getcwd())
 col1 ,col2 = st.columns(2)
 
 data0 =getsheetdata(0)
