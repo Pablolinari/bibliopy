@@ -34,7 +34,7 @@ if st.button("cargar peliculas"):
     with st.spinner("Cargando peliculas"):
         writesheetdata(maindir,0)
         writesheetdata(maindir,1,data0)
-    st.text_area(print(getarchivos(maindir)))
+    st.text_area(print(get_archivos(maindir)))
 
 if st.button('Actualizar vista'):
     data0=getsheetdata(0)
