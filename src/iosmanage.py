@@ -4,6 +4,7 @@ import pandas as pd
 # lista todos los archivos de un directorio y subdirectorios dando el nombre el directorio al que pertenece 
 # y el tamanio en GB
 def get_archivos(ruta_dir):
+    print(ruta_dir)
     values=[]
     auxruta_dir =ruta_dir.split('\\')[-1]
     for dir_actual ,carpetas,archivos in os.walk(ruta_dir):
