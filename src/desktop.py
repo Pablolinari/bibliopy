@@ -1,18 +1,23 @@
 import tkinter as tk
 from tkinter import ttk, filedialog
 import pandas as pd
-from main import writesheetdata, getsheetdata
+from main import writesheetdata, getsheetdata,getsheets
 from iosmanage import obtener_disco_duro
 
 maindir = ""
+hoja=0
 
 def writefilms():
-    writesheetdata(maindir, 0)
-    writesheetdata(maindir, 1, data0)
-    print(maindir)
+    hoja = sheet_selector.current()
+    writesheetdata(maindir, hoja)
+    
+    print('escrito en %i',hoja)
 
-def show_dataframe(df):
-    global tree
+def show_dataframe():
+    global tree, hoja
+    # Obtener datos de la hoja seleccionada
+    df = getsheetdata(hoja)
+    
     # Añadir una columna de índice
     df = df.reset_index()
     df.rename(columns={'index': 'Índice'}, inplace=True)
@@ -55,7 +60,7 @@ def refresh():
         tree.delete(item)
     
     # Obtener datos actualizados
-    data0 = getsheetdata(0)
+    data0 = getsheetdata(hoja)
     
     # Verificar si el DataFrame está vacío
     if not data0.empty:
@@ -88,7 +93,7 @@ def select_directory():
     if maindir:
         print(f"Directorio seleccionado: {maindir}")
 
-data0 = getsheetdata(0)
+data0 = getsheetdata(hoja)
 
 # Ventana principal 
 mainwindow = tk.Tk()
@@ -105,9 +110,10 @@ select_dir_button.pack(pady=5)
 # Selector de hoja
 sheet_selector_label = tk.Label(left_frame, text="Seleccionar Hoja:")
 sheet_selector_label.pack(pady=5)
-sheet_selector = ttk.Combobox(left_frame, values=["Hoja 1", "Hoja 2", "Hoja 3"])
+val=getsheets()
+sheet_selector = ttk.Combobox(left_frame, values=val)
 sheet_selector.pack(pady=5)
-sheet_selector.current(0)  # Seleccio
+  # Seleccio
 # Botón para enviar películas
 submit_pelilculas = tk.Button(left_frame, text="Cargar Peliculas", command=writefilms)
 submit_pelilculas.pack(pady=5)
@@ -125,6 +131,6 @@ search_button = tk.Button(left_frame, text="Buscar", command=search)
 search_button.pack(pady=5)
 
 # Mostrar el DataFrame en una tabla
-show_dataframe(data0)
+show_dataframe()
 
 mainwindow.mainloop()

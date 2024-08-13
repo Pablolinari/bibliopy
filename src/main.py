@@ -42,3 +42,12 @@ def selectduplicated(data):
     dfp = df[df.columns[0]]
     duplicados = dfp.duplicated(keep=False)
     return df[duplicados]
+def getsheets():
+    values=[]
+    for ssheet in sheet:
+        values.append(ssheet.title)
+    return values
+
+    
+
+    
