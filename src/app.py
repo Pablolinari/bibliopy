@@ -12,10 +12,10 @@ st.set_page_config(layout="wide",page_title='Biblioteca',page_icon=":cinema:")
 discos_duros = obtener_disco_duro()
 
 # Mostrar la lista de discos en un selector de Streamlit
-if st.toggle("Intrtoducir ruta",):
-    maindir=(st.text_input("Ruta del disco"))
-else:
-    maindir = st.selectbox("Selecciona un disco duro", discos_duros,index=None,placeholder='Elegir un disco')
+#if st.toggle("Intrtoducir ruta",):
+maindir=(st.text_input("Ruta del disco"))
+#else:
+ #   maindir = st.selectbox("Selecciona un disco duro", discos_duros,index=None,placeholder='Elegir un disco')
 
 col1 ,col2 = st.columns(2)
 
