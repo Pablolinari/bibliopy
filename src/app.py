@@ -4,6 +4,7 @@ import time
 from pathlib import Path
 from iosmanage import obtener_disco_duro , get_archivos
 import pandas as pd
+import os
 
 st.set_page_config(layout="wide",page_title='Biblioteca',page_icon=":cinema:")
 
@@ -16,7 +17,7 @@ discos_duros = obtener_disco_duro()
 maindir=(st.text_input("Ruta del disco"))
 #else:
  #   maindir = st.selectbox("Selecciona un disco duro", discos_duros,index=None,placeholder='Elegir un disco')
-
+st.text_area(st.write(os.getcwd()))
 col1 ,col2 = st.columns(2)
 
 data0 =getsheetdata(0)
@@ -34,7 +35,7 @@ if st.button("cargar peliculas"):
     with st.spinner("Cargando peliculas"):
         writesheetdata(maindir,0)
         writesheetdata(maindir,1,data0)
-    st.text_area(print(get_archivos(maindir)))
+    
 
 if st.button('Actualizar vista'):
     data0=getsheetdata(0)
