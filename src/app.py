@@ -2,7 +2,7 @@ import streamlit as st
 from main import writesheetdata, getsheetdata,selectduplicated
 import time
 from pathlib import Path
-from iosmanage import obtener_disco_duro
+from iosmanage import obtener_disco_duro , get_archivos
 import pandas as pd
 
 st.set_page_config(layout="wide",page_title='Biblioteca',page_icon=":cinema:")
@@ -34,6 +34,7 @@ if st.button("cargar peliculas"):
     with st.spinner("Cargando peliculas"):
         writesheetdata(maindir,0)
         writesheetdata(maindir,1,data0)
+    st.text_area(print(getarchivos(maindir)))
 
 if st.button('Actualizar vista'):
     data0=getsheetdata(0)
