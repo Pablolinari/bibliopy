@@ -23,16 +23,16 @@ def writesheetdata(dir,number,data=None):
     print(values)
     numrows = len(sheet.get_worksheet(number).col_values(1))
     if numrows ==0 :
-        sheet.get_worksheet(number).update('A1','Peliculas')
-        sheet.get_worksheet(number).update('B1','Disco')
-        sheet.get_worksheet(number).update('C1','Tamaño')
+        sheet.get_worksheet(number).update('A1:C1',[['Peliculas','Disco','Tamaño']])
+
         numrows+=1
     start_row = numrows + 1
     # Preparar los datos para la actualización
     if data is not None:
         values=data.values.tolist()
     
-    sheet.get_worksheet(number).batch_update([{'range': f'A{start_row}','values': values,}])
+    sheete=sheet.get_worksheet(number)
+    sheete.batch_update([{'range': f'A{start_row}','values': values,}])
 
 def getsheetdata(index):
     pd.options.display.float_format = lambda x: f'{x:.2f}'.replace('.', ',')
