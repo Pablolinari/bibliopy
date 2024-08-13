@@ -20,7 +20,6 @@ sheet = client.open_by_key(sheetid)
    
 def writesheetdata(dir,number,data=None):
     values = get_archivos(dir)
-    print(values)
     numrows = len(sheet.get_worksheet(number).col_values(1))
     if numrows ==0 :
         sheet.get_worksheet(number).update('A1:C1',[['Peliculas','Disco','Tamaño']])
@@ -42,5 +41,4 @@ def selectduplicated(data):
     df = pd.DataFrame(data)
     dfp = df[df.columns[0]]
     duplicados = dfp.duplicated(keep=False)
-    print (duplicados)
     return df[duplicados]
